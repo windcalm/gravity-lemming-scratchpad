@@ -12,7 +12,7 @@ function reset() {
   direction = directions.ArrowDown;
   remaining = 0;
   previous = null;
-  statusLine.textContent = '重力 ↓';
+  statusLine.textContent = 'Gravity: ↓';
 }
 
 function tick() {
@@ -31,7 +31,7 @@ function tick() {
   if (lemming.x + half >= exit.x && lemming.x - half <= exit.x + exit.width &&
       lemming.y + half >= exit.y && lemming.y - half <= exit.y + exit.height) {
     lemming.won = true;
-    statusLine.textContent = '已到达出口！按 R 重试';
+    statusLine.textContent = 'Exit reached! Press R to restart.';
   }
 }
 
@@ -59,7 +59,7 @@ window.addEventListener('keydown', event => {
   if (!lemming.won && direction !== next) {
     direction = next;
     lemming.fall = 0;
-    statusLine.textContent = `重力 ${next[2]}`;
+    statusLine.textContent = `Gravity: ${next[2]}`;
   }
 });
 

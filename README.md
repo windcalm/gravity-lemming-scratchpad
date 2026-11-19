@@ -1,22 +1,24 @@
-# 盲眼旅鼠重力房间
+# Blind Lemming Gravity Room
 
-直接用浏览器打开 `index.html`，无需安装依赖。以下是本轮实验设定。
+Open `index.html` in a browser to run the physics test. No installation is required.
 
-## 核心规则
+## Core rules
 
-- 旅鼠不寻路、不跳跃，始终沿垂直于重力的方向行走；即使在空中也会前进，切向撞墙就掉头。
-- 方向键指定重力方向，不是直接移动旅鼠。改变重力时清零下落速度，按新重力重新确定行走轴。
-- 黄色旅鼠碰到右上角的绿色出口即暂停。按 R 重新开始。
+- The lemming walks perpendicular to gravity, even in midair. It turns around when it hits a wall in its path. It cannot jump or find its way to the exit on its own.
+- The arrow keys set the direction of gravity rather than steering the lemming. Changing gravity resets its fall speed and rotates its walking direction.
+- The simulation pauses when the yellow lemming touches the green exit in the upper-right corner. Press **R** to restart.
 
-## 物理参数备忘
+## Physics reference
 
-| 参数 | 本轮取值 |
+| Parameter | Test setting |
 | --- | --- |
-| 房间 / 旅鼠方形碰撞盒 | 720 × 400 / 20 × 20 px |
-| 出生中心 | (80, 80)，左上为原点，初始重力向下、行走向右 |
-| 步速 | 85 px/s |
-| 重力加速度 / 最大下落速度 | 700 px/s² / 360 px/s |
-| 固定物理步长 | 1/120 秒；单帧最多追赶 0.1 秒 |
-| 边界响应 | 沿重力方向贴墙停落，不反弹；沿行走方向撞墙掉头 |
+| Room size | 720 × 400 px |
+| Lemming hitbox | 20 × 20 px |
+| Starting position | Center at (80, 80) px from the upper-left corner; gravity points down and the lemming walks right. |
+| Walking speed | 85 px/s |
+| Gravitational acceleration | 700 px/s² |
+| Maximum fall speed | 360 px/s |
+| Fixed time step | 1/120 s; each frame catches up by at most 0.1 s. |
+| Boundary response | Landing stops the fall without a bounce. Walking into a wall reverses the walking direction. |
 
-验证：不操作应落地并沿地板往返。按 R 后按 ↑，旅鼠应贴上沿行走，最终进入出口。物理常量在 `main.js` 开头。
+**Quick check:** Without input, the lemming should land and pace along the floor. Press **R**, then **Up Arrow**: it should fall toward the ceiling, walk along it, and reach the exit. To tune the physics, edit the constants at the top of `main.js`.
